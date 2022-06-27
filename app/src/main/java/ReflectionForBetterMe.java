@@ -20,20 +20,72 @@ public class ReflectionForBetterMe {
 
   }
 
+
+
   public void run() throws IOException {
-  frame = new JFrame("Reflection Page");
-  frame .setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-  frame.setSize(800,1000);
+    frame = new JFrame("Reflection Page");
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setSize(800, 1000);
 
-  BoardPanel boardPanel = new BoardPanel();
-  boardPanel.menuBar(frame);
+    menuBar();
 
-  ContentPanel contentPanel = new ContentPanel();
-  contentPanel.
+    //initmainPanel();
 
-  frame.setVisible(true);
+    initContentPanel();
 
 
+    frame.setVisible(true);
+
+  }
+
+ /* public void initmainPanel() {
+    JPanel mainPanel = new JPanel();
+    mainPanel.setLayout(new GridLayout());
+
+
+    frame.add(mainPanel,BorderLayout.CENTER);
+
+
+  }
+*/
+  public void menuBar () {
+      JPanel panel = new JPanel();
+      panel.setLayout(new FlowLayout());
+      frame.add(panel, BorderLayout.PAGE_START);
+
+      //레이블 관리
+      JLabel mainLabel = new JLabel("회고 게시판");
+
+      panel.add(mainLabel);
+
+      //버튼
+      panel.add(createWritingButton());
+
+    }
+
+  private void initContentPanel() {
+    contentPanel = new JPanel();
+    frame.add(contentPanel);
+  }
+
+
+    public JButton createWritingButton () {
+      JButton writingButton = new JButton("글쓰기");
+      writingButton.addActionListener(event -> {
+        JTextField postTextField = new JTextField();
+        contentPanel.add(postTextField);
+        JPanel writingPanel = new WritingPanel();
+        showContentPanel(writingPanel);
+
+
+      });
+      return writingButton;
+    }
+
+  public void showContentPanel(JPanel writingPanel) {
+    contentPanel.removeAll(); //버튼을 계속 눌러도 추가생성되지 않음
+    contentPanel.add(writingPanel);
+    frame.setVisible(true);
   }
 
 }
