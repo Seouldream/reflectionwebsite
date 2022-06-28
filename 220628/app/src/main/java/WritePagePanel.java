@@ -15,7 +15,7 @@ public class WritePagePanel extends JPanel {
     frameWrite.setSize(500, 500);
     frameWrite.setLocation(1100,1100);
 
-    JTextArea writingTextArea = new JTextArea("글을 입력하세요", 10, 30);
+    writingTextArea = new JTextArea("글을 입력하세요", 10, 30);
     frameWrite.add(writingTextArea);
 
     //글 등록 버튼을 넣을 패널 생성
@@ -29,8 +29,7 @@ public class WritePagePanel extends JPanel {
   public JButton createPostRegisterButton() {
     JButton button = new JButton("글 등록하기");
     button.addActionListener(event -> {
-
-      postManagement.post();
+      postManagement.post(writingTextArea);
 
     });
         return button;

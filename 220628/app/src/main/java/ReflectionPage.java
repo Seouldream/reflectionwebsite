@@ -10,6 +10,8 @@ public class ReflectionPage {
   private PostManagement postManagement;
 
 
+
+
   public static void main(String[] args) {
     ReflectionPage application = new ReflectionPage();
     application.run();
@@ -50,7 +52,7 @@ public class ReflectionPage {
     return button;
   }
 
-  private JButton createWriteButton() {
+  public JButton createWriteButton() {
     JButton button = new JButton("글쓰기");
     button.addActionListener(event -> {
       WritePagePanel writePagePanel = new WritePagePanel(postManagement);
