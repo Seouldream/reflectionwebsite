@@ -7,7 +7,11 @@ import java.awt.*;
 public class ReflectionPage {
   private JFrame frameMain;
   private JPanel contentPanel;
-  private Post post;
+  private PostManagement postManagement;
+  private PostPagePanel postPagePanel;
+
+
+
 
   public static void main(String[] args) {
     ReflectionPage application = new ReflectionPage();
@@ -15,6 +19,8 @@ public class ReflectionPage {
   }
 
   public void run() {
+    postManagement = new PostManagement();
+
     frameMain = new JFrame("Reflection Page");
     frameMain.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     frameMain.setSize(700, 700);
@@ -37,34 +43,37 @@ public class ReflectionPage {
 
   }
 
-  private JButton createPostingPageButton() {
+  public JButton createPostingPageButton() {
     JButton button = new JButton("게시판");
     button.addActionListener(event -> {
-      PostPagePanel postPagePanel = new PostPagePanel(post);
+      PostPagePanel postPagePanel = new PostPagePanel(postManagement);
       showContentPanel(postPagePanel);
 
     });
     return button;
   }
 
-  private JButton createWriteButton() {
+  public JButton createWriteButton() {
     JButton button = new JButton("글쓰기");
     button.addActionListener(event -> {
-      WritePagePanel writePagePanel = new WritePagePanel();
+      WritePagePanel writePagePanel = new WritePagePanel(postManagement,postPagePanel);
       showContentPanel(writePagePanel);
 
     });
     return button;
   }
 
+  public void initContentPanel() {
+    contentPanel = new JPanel();
+    //contentPanel.setLayout(new FlowLayout());
+    frameMain.add(contentPanel);
+  }
+
   public void showContentPanel(JPanel panel) {
     contentPanel.removeAll();
     contentPanel.add(panel);
+    contentPanel.setVisible(false);
+    contentPanel.setVisible(true);
     frameMain.setVisible(true);
-  }
-
-  public void initContentPanel() {
-    contentPanel = new JPanel();
-    frameMain.add(contentPanel);
   }
 }
