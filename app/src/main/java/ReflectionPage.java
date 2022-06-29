@@ -21,6 +21,7 @@ public class ReflectionPage {
 
   public void run() {
     postManagement = new PostManagement();
+    postPagePanel = new PostPagePanel(postManagement);
 
     frameMain = new JFrame("Reflection Page");
     frameMain.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -47,7 +48,7 @@ public class ReflectionPage {
   public JButton createPostingPageButton() {
     JButton button = new JButton("게시판");
     button.addActionListener(event -> {
-      PostPagePanel postPagePanel = new PostPagePanel(postManagement);
+      postPagePanel = new PostPagePanel(postManagement);
       showContentPanel(postPagePanel);
 
     });

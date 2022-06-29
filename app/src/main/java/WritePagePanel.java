@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class WritePagePanel extends JPanel {
+  private final JTextField textfield;
   PostManagement postManagement;
   private JFrame frameWrite;
   private JTextArea writingTextArea;
@@ -16,13 +17,17 @@ public class WritePagePanel extends JPanel {
     frameWrite.setSize(500, 500);
     frameWrite.setLocation(700,700);
 
+    textfield = new JTextField((25));
+    frameWrite.add(textfield, BorderLayout.PAGE_START);
+
     writingTextArea = new JTextArea("글을 입력하세요", 10, 30);
+    writingTextArea.setLineWrap(true);
     frameWrite.add(writingTextArea);
 
     //글 등록 버튼을 넣을 패널 생성
     JPanel panel = new JPanel();
     panel.add(createPostRegisterButton());
-    frameWrite.add(panel, BorderLayout.PAGE_END);
+    frameWrite.add(panel,BorderLayout.PAGE_END);
 
     frameWrite.setVisible(true);
   }
@@ -33,6 +38,7 @@ public class WritePagePanel extends JPanel {
       postManagement.post(writingTextArea);
 
       postPagePanel.createPostContentButton();
+      frameWrite.setVisible(false);
 
 
     });
