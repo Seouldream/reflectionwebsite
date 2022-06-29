@@ -8,6 +8,7 @@ public class ReflectionPage {
   private JFrame frameMain;
   private JPanel contentPanel;
   private PostManagement postManagement;
+  private PostPagePanel postPagePanel;
 
 
 
@@ -42,7 +43,7 @@ public class ReflectionPage {
 
   }
 
-  private JButton createPostingPageButton() {
+  public JButton createPostingPageButton() {
     JButton button = new JButton("게시판");
     button.addActionListener(event -> {
       PostPagePanel postPagePanel = new PostPagePanel(postManagement);
@@ -55,11 +56,17 @@ public class ReflectionPage {
   public JButton createWriteButton() {
     JButton button = new JButton("글쓰기");
     button.addActionListener(event -> {
-      WritePagePanel writePagePanel = new WritePagePanel(postManagement);
+      WritePagePanel writePagePanel = new WritePagePanel(postManagement,postPagePanel);
       showContentPanel(writePagePanel);
 
     });
     return button;
+  }
+
+  public void initContentPanel() {
+    contentPanel = new JPanel();
+    //contentPanel.setLayout(new FlowLayout());
+    frameMain.add(contentPanel);
   }
 
   public void showContentPanel(JPanel panel) {
@@ -68,11 +75,5 @@ public class ReflectionPage {
     contentPanel.setVisible(false);
     contentPanel.setVisible(true);
     frameMain.setVisible(true);
-  }
-
-  public void initContentPanel() {
-    contentPanel = new JPanel();
-    //contentPanel.setLayout(new FlowLayout());
-    frameMain.add(contentPanel);
   }
 }

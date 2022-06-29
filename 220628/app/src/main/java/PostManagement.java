@@ -3,8 +3,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PostManagement {
+  PostPagePanel postPagePanel;
 
-  List<String> posts = new ArrayList<>();
+  private List<String> posts = new ArrayList<>();
 
   public PostManagement() {
 
@@ -15,9 +16,14 @@ public class PostManagement {
 
         String writingText = writingTextArea.getText();
         this.posts.add(writingText);
+
   }
   public List<String> getPosts() {
     return posts;
   }
 
-}
+
+
+
+ }
+
