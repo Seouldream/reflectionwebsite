@@ -43,8 +43,14 @@ public class PostPagePanel extends JPanel {
         //입력받은 텍스트를 순서대로 리스트에서 가져옴
         JTextArea textAreaForContent = new JTextArea(postManagement.getPosts().get(geti),10,30);
         textAreaForContent.setEditable(false);
+
+        JScrollPane scrollPane = new JScrollPane(textAreaForContent);
         JPanel panelForContentLabel = new JPanel();
-        panelForContentLabel.add(textAreaForContent);
+
+        panelForContentLabel.setLayout(new BorderLayout());
+
+
+        panelForContentLabel.add(scrollPane, BorderLayout.CENTER);
         panelForContentLabel.setLayout(new GridLayout(1,1));
 
 
