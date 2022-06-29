@@ -38,12 +38,23 @@ public class PostPagePanel extends JPanel {
         JFrame frame = new JFrame("회고" + postManagement.getPosts().size());
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setSize(500,500);
-        JLabel label = new JLabel("제목을 적는 란입니다.");
 
-        JLabel labelForContent = new JLabel(postManagement.getPosts().get(geti));
 
-        frame.add(label);
-        frame.add(labelForContent);
+        //입력받은 텍스트를 순서대로 리스트에서 가져옴
+        JTextArea textAreaForContent = new JTextArea(postManagement.getPosts().get(geti),10,30);
+        textAreaForContent.setEditable(false);
+
+        JScrollPane scrollPane = new JScrollPane(textAreaForContent);
+        JPanel panelForContentLabel = new JPanel();
+
+        panelForContentLabel.setLayout(new BorderLayout());
+
+
+        panelForContentLabel.add(scrollPane, BorderLayout.CENTER);
+        panelForContentLabel.setLayout(new GridLayout(1,1));
+
+
+        frame.add(panelForContentLabel);
         frame.setVisible(true);
       });
       panel.add(buttonForPosts);
