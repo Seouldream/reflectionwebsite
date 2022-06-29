@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PostManagement {
-  PostPagePanel postPagePanel;
+
 
   private List<String> posts = new ArrayList<>();
 
